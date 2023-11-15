@@ -1,6 +1,6 @@
 #!/bin/bash
 
-arg=${1:-/backup}
+arg=${1:-/tmp/backup}
 
 # Verification Root
 if [ "$UID" -ne 0 ]
@@ -47,4 +47,6 @@ echo "Fin de l'execution du script a $end_time"
 # Creation de l'archive
 archive_name="nginx_$(date "+%Y%m%d_%H%M%S").tar.gz"
 tar -czf $destination/$archive_name -C $destination config data
-rm -rf $destination/config $destination/data  
+rm -rf $destination/config $destination/data 
+
+exit 0
