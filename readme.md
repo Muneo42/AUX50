@@ -46,3 +46,26 @@
 ### sudo rm -fr /var/www/
 ### sudo rm /etc/nginx/sites-available/default
 ### Restaurez les fichiers de configuration depuis le backup, et faites en sorte de pouvoir accéder au site http://localhost:8080 à nouveau.
+
+# AUX050: TP4
+
+### Scripts d’administration UNIX/Linux - TP4
+
+### Vous avez réussi à créer un script de backup et à vous en servir pour rétablir un service. Maintenant il est temps d’automatiser le rétablissement de ce service, cela permettra un gain de temps dans la remise en marche de votre site. De plus, la sauvegarde de votre site n’est pas encore automatisée, il faut régler ce point également.
+
+### Questions
+
+### Créez un cronjob sur la machine virtuelle pour executer le script de backup toutes les heures, attention :
+### le nom du fichier de backup devra contenir la date et l’heure à laquelle il a été fait,
+## un message dans /var/log/backup.log doit apparaître pour informer le démarrage et la fin du backup.
+
+### Questions
+
+### Créez un script de restauration pour nginx, il doit :
+### affichez l’heure du début de la restauration,
+### vérifiez si les fichiers à restaurer sont déjà présents,
+### si oui : affichez un warning et demander si on souhaite écraser l’existant – si oui : le faire en affichant la liste des fichiers copiés – si non : affichez un code de sortie Operation canceled
+### si non, poursuivre le script
+### récupérez le fichier nginx.tar.gz dans /tmp/
+### arrangez-vous pour extraire les données du site dans leur bon répertoire de destination, en affichant la liste des fichiers copiés
+### affichez l’heure de fin du script.
