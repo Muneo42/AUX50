@@ -9,8 +9,8 @@ system_uptime=$(uptime)
 log_file="/var/log/system_info.log"
 
 # Ajouter le message au journal
-echo -e "Date et heure : $current_date\nUtilisateurs connectés :\n$logged_in_users\nUptime du système :\n$system_uptime\n" >> $log_file
+echo "Date et heure : $current_date\nUtilisateurs connectés :\n$logged_in_users\nUptime du système :\n$system_uptime\n" >> $log_file
 
 # Afficher le message
-echo -e "Information système enregistrée dans le journal : $log_file"
+echo "Information système enregistrée dans le journal : $log_file"
 
