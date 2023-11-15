@@ -1,5 +1,7 @@
 #!/bin/bash
 
+arg=${1:-/backup}
+
 # Verification Root
 if [ "$UID" -ne 0 ]
 then
@@ -8,19 +10,18 @@ then
 fi
 
 # Verification des arguments
-if [ "$#" -eq 0 ]
+if [ -z "$1" ]
 then
-	echo "Usage: $0 <Destination>"
-	exit 1
+	echo "The default path is $arg"
+	destination=$arg
+else
+	destination="$1"
 fi
-
-# Dossier de destination
-destination="$1"
 
 # Creation du dossier de sauvegarde s'il n'existe pas
 if [ -f $destination ]
 then
-	mkdir $destination
+	mkdir -p $destination
 fi
 
 # Affichage de l'heure du debut de l'execution
@@ -29,13 +30,13 @@ echo "Debut de l'execution du script a $start_time"
 
 # Saivegarde des fichiers de configuration dans un sous-dossier
 config_folder="$destination/config"
-mkdir "$config_folder"
+mkdir -p "$config_folder"
 cp -v /etc/nginx/nginx.conf "$config_folder"
 #echo "Fichier de configuration sauvegarde : /etc/nginx/nginx.conf"
 
 #Sauvgare des donnees dans un sous-dossier
 data_folder="$destination/data"
-mkdir "$data_folder"
+mkdir -p "$data_folder"
 cp -rv "/var/www/html/"* "$data_folder"
 cp -v "/etc/nginx/sites-available/"* "$data_folder"
 
