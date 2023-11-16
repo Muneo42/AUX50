@@ -71,7 +71,7 @@
 - arrangez-vous pour extraire les données du site dans leur bon répertoire de destination, en affichant la liste des fichiers copiés
 - affichez l’heure de fin du script.
 
-#AUX050: TP5
+# AUX050: TP5
 
 ## Scripts d’administration UNIX/Linux - TP5
 
