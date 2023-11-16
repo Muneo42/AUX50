@@ -102,6 +102,7 @@
 - utiliser la variable d’environnement spéciale RANDOM,
 - renvoyer une valeur entre 0 et 50.
 - La variable RANDOM est spéciale dans le sens où à chaque consultation de sa valeur, elle renvoie un nombre différent aléatoire compris entre 0 et 32767.
+> Fichier "aleatoire50.sh"
 
 # AUX050: TP7
 
