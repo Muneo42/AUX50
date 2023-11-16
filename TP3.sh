@@ -1,18 +1,24 @@
 #!/bin/bash
 
+Green='\033[0;32m'
+Red='\033[0;31m'
+Blue='\033[0;34m'
+Yellow='\033[0;33m'
+Nc='\033[0m'
+
 arg=${1:-/tmp/backup}
 
 # Verification Root
 if [ "$UID" -ne 0 ]
 then
-	echo "Vous devez etre root pour executer ce script."
+	echo -e "${Red}Vous devez etre root pour executer ce script.${Nc}"
 	exit 2
 fi
 
 # Verification des arguments
 if [ -z "$1" ]
 then
-	echo "The default path is $arg"
+	echo -e "${Yellow}The default path is $arg${Nc}"
 	destination=$arg
 else
 	destination="$1"
@@ -26,7 +32,7 @@ fi
 
 # Affichage de l'heure du debut de l'execution
 start_time=$(date "+%Y-%m-%d %H:%M:%S")
-echo "Debut de l'execution du script a $start_time"
+echo -e "${Green}Debut de l'execution du script a $start_time"
 
 # Saivegarde des fichiers de configuration dans un sous-dossier
 config_folder="$destination/config"
@@ -42,7 +48,7 @@ cp -v "/etc/nginx/sites-available/"* "$data_folder"
 
 # Affichage de l'heure de fin d'execution
 end_time=$(date "+%Y-%m-%d %H:%M:%S")
-echo "Fin de l'execution du script a $end_time"
+echo -e "Fin de l'execution du script a $end_time${Nc}"
 
 # Creation de l'archive
 archive_name="nginx_$(date "+%Y%m%d_%H%M%S").tar.gz"
