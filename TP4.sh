@@ -5,6 +5,7 @@ Red='\033[0;31m'
 Blue='\033[0;34m'
 Yellow='\033[0;33m'
 Nc='\033[0m'
+re='^[0-9]+$'
 
 # Verification Root
 if [ "$UID" -ne 0 ]
@@ -20,13 +21,40 @@ echo "Debut de la restauration a $start_time"
 # Recuperation du fichier de sauvegarde depuis /tmp/
 backup_file="/tmp/backup/nginx_*.tar.gz"
 
+# List les backup dispo
+echo -e "${Green}Voici les backup disponible :"
+ls $backup_file
+
+# Demande de choisir au User quel backup
+echo -e "${Yellow}Veuillez entre le chiffre correspondant au backup souhaité${Nc}"
+read choice
+
+# Parsing de l'input
+#if [[ $choice =~ $re ]]
+#then
+#	echo -e "${Red}Choix impossible.${Nc}"
+#	exit 1
+#fi
+
+# Fichier selectionnée
+selected_file=$(ls $backup_file | sed -n "${choice}p")
+
+# Check si choix existe
+if [ -z "$selected_file" ]
+then
+	echo -e "${Red}Choix n'existe pas"
+	exit 1
+fi
+
+echo -e "${Green}Choix valide! : ${selected_file}"
+
 # Verification de l'existance du fichier de sauvegarde
-if [ ! -e  $backup_file ]
+if [ ! -e  $selected_file ]
 then
 	echo -e "${Red}Erreur : Le fichier de sauvegarde n'a pas été trouvé dans /tmp/${Nc}"
 	exit 1
 else
-	echo -e "${Green}$backup_file existe${Nc}"
+	echo -e "${Green}$selected_file existe${Nc}"
 fi
 
 # Verification si les fichiers existent deja
@@ -43,7 +71,7 @@ fi
 
 
 # Extraction des donnees dans les repertoires appropries
-tar -xzf ${backup_file} -C /tmp/backup/
+tar -xzf ${selected_file} -C /tmp/backup/
 cp -vr /tmp/backup/config/* /etc/nginx/
 cp -vr /tmp/backup/data/index.nginx-debian.html /var/www/html/
 cp -vr /tmp/backup/data/default /etc/nginx/sites-available/
