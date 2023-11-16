@@ -1,5 +1,6 @@
 #!/bin/bash
 
+error=0
 Green='\033[0;32m'
 Red='\033[0;31m'
 Blue='\033[0;34m'
@@ -57,26 +58,60 @@ else
 	echo -e "${Green}$selected_file existe${Nc}"
 fi
 
-# Verification si les fichiers existent deja
-if [ -e /etc/nginx/nginx.conf ] || [ -e /var/www/html ]
+# Extraction des fichiers
+tar -xzf ${selected_file} -C /tmp/backup/
+
+
+# Vérification si les fichiers existent déjà
+if [ -e /etc/nginx/nginx.conf ]
 then
-	echo -e "${Yellow}Attention : Les fichiers Existent deja. Voulez-vous les ecraser?${Nc} (y/n)" 	
+	echo -e "${Yellow}Le fichier /etc/nginx/nginx.conf existe déjà.${Nc}"
+	echo -e "${Yellow}Voulez-vous écraser les fichiers existants?${Nc} (y/n)"
 	read overwrite
-	if [ "$overwrite" != "y" ]
+	if [ "$overwrite" == "y" ]
 	then
-		echo -e "${Red}Operation Canceled${Nc}"
-		exit 1
+		cp -vr /tmp/backup/config/* /etc/nginx/	
+	else
+    		echo -e "${Red}Opération annulée (Overrwite)${Nc}"
+	fi	
+fi
+ 
+if [ -e /var/www/html/index.nginx-debian.html ]
+then
+	echo -e "${Yellow}Le fichier /var/www/html/index.nginx*.html existe déjà.${Nc}"
+	echo -e "${Yellow}Voulez-vous écraser les fichiers existants?${Nc} (y/n)"
+	read overwrite
+	if [ "$overwrite" == "y" ]
+	then
+		cp -vr /tmp/backup/data/index.nginx-debian.html /var/www/html/
+	else
+    		echo -e "${Red}Opération annulée (Overrwite)${Nc}"
 	fi
 fi
-
+if [ -e /etc/nginx/sites-available/default ]
+then
+	echo -e "${Yellow}Le fichier /etc/nginx/sites-available/default existe déjà.${Nc}"
+	echo -e "${Yellow}Voulez-vous écraser les fichiers existants?${Nc} (y/n)"
+	read overwrite
+	if [ "$overwrite" == "y" ]
+	then
+		cp -vr /tmp/backup/data/default /etc/nginx/sites-available/	
+	else
+    		echo -e "${Red}Opération annulée (Overrwite)${Nc}"
+	fi
+fi
+ 
+# Regement apres les copies
+rm -rf /tmp/backup/data /tmp/backup/config
 
 # Extraction des donnees dans les repertoires appropries
 tar -xzf ${selected_file} -C /tmp/backup/
-cp -vr /tmp/backup/config/* /etc/nginx/
-cp -vr /tmp/backup/data/index.nginx-debian.html /var/www/html/
-cp -vr /tmp/backup/data/default /etc/nginx/sites-available/
+cp -nvr /tmp/backup/config/* /etc/nginx/
+cp -nvr /tmp/backup/data/index.nginx-debian.html /var/www/html/
+cp -nvr /tmp/backup/data/default /etc/nginx/sites-available/
 rm -rf /tmp/backup/data /tmp/backup/config
 
 #Affichage de l'heure de fin de la restauration
 end_time=$(date "+%Y%m%d %H:%M:%S")
 echo -e "${Green}Fin de la restauration a $end_time${Nc}"
+exit 0
