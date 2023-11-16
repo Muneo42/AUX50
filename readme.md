@@ -65,7 +65,7 @@
 
 ## Questions
 
--Créez un script de restauration pour nginx, il doit :
+## Créez un script de restauration pour nginx, il doit :
 - affichez l’heure du début de la restauration,
 - vérifiez si les fichiers à restaurer sont déjà présents,
 - si oui : affichez un warning et demander si on souhaite écraser l’existant – si oui : le faire en affichant la liste des fichiers copiés – si non : affichez un code de sortie Operation canceled
@@ -89,3 +89,38 @@
 - Prévoyez une gestion des erreurs.
 - Le script doit tracer les actions validées, en sortie standard mais également dans un journal.
 > Fichier "TP5.sh"
+
+# AUX050: TP6
+
+## Scripts d’administration UNIX/Linux - TP6 : Nouveau bonus
+
+## Vous voulez jouer au loto, mais vous n’avez aucune idée des nombres à jouer. Comme c’est un jeu de hasard, vous allez vous en remettre à lui.
+
+## Exercice
+
+## Rédigez un script aleatoire50.sh qui va :
+- utiliser la variable d’environnement spéciale RANDOM,
+- renvoyer une valeur entre 0 et 50.
+- La variable RANDOM est spéciale dans le sens où à chaque consultation de sa valeur, elle renvoie un nombre différent aléatoire compris entre 0 et 32767.
+
+# AUX050: TP7
+
+## Scripts d’administration UNIX/Linux - TP7 : Encore plus de bonus
+
+## Vos machines ont souvent des soucis systèmes, mais vous en avez marre de devoir faire du nettoyage manuel toutes les deux semaines dessus, vous déciez donc de créer un script qui va vous permettre de gérer les cas les plus récurrents.
+
+## Exercices
+
+## Rédigez un script tp7.sh qui va :
+- supprimer du dossier /tmp des fichiers qui ne sont plus utilisés,
+- archiver les fichiers du dossier /var/log qui sont plus vieux que 7 jours dans un fichier archive.log.gz,
+- déplacer le fichier d’archive précédent dans /backup,
+- vérifier qu’aucun volume n’est rempli à plus de 80% :
+- si c’est rempli à plus de 80%, écrire une alerte,
+- renseigner toutes les actions appliquées dans un journal /var/log/maintenance.log :
+- par exemple si aucun fichiers du dossier /tmp n’a été supprimé, le journal ne doit pas contenir de trace de ce dossier,
+- Comme vous n’êtes pas seul à utiliser ces machines, vous allez notifier les autres personnes des tâches que vous avez effectué, pour cela on va utiliser le système de mail internet au système Linux.
+
+## Envoyer un mail local aux utilisateurs de la machine, pour savoir qui sont ces utilisateurs il faut :
+- lister les utilisateurs,
+- sélectionnez uniquement ceux qui ont un shell de disponible,
