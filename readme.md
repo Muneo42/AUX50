@@ -37,6 +37,7 @@
 - variabiliser la destination (le dossier) de la sauvegarde,
 - séparer en sous-dossier les données et les fichiers de configuration,
 - afficher l’heure de fin d’éxécution du script.
+> Fichier "TP3.sh"
 
 ## Bonus
 
@@ -47,6 +48,7 @@
 - sudo rm -fr /var/www/
 - sudo rm /etc/nginx/sites-available/default
 - Restaurez les fichiers de configuration depuis le backup, et faites en sorte de pouvoir accéder au site http://localhost:8080 à nouveau.
+> > Fichier "TP3.sh"
 
 # AUX050: TP4
 
@@ -59,6 +61,7 @@
 - Créez un cronjob sur la machine virtuelle pour executer le script de backup toutes les heures, attention :
 - le nom du fichier de backup devra contenir la date et l’heure à laquelle il a été fait,
 - un message dans /var/log/backup.log doit apparaître pour informer le démarrage et la fin du backup.
+> Fichier "TP4.sh"
 
 ## Questions
 
@@ -70,6 +73,7 @@
 - récupérez le fichier nginx.tar.gz dans /tmp/
 - arrangez-vous pour extraire les données du site dans leur bon répertoire de destination, en affichant la liste des fichiers copiés
 - affichez l’heure de fin du script.
+> Fichier "TP4.sh"
 
 # AUX050: TP5
 
@@ -84,3 +88,4 @@
 - de sauvegarder le dossier d’un utilisateur.
 - Prévoyez une gestion des erreurs.
 - Le script doit tracer les actions validées, en sortie standard mais également dans un journal.
+> Fichier "TP5.sh"
