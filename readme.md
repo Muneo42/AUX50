@@ -121,7 +121,9 @@
 - renseigner toutes les actions appliquées dans un journal /var/log/maintenance.log :
 - par exemple si aucun fichiers du dossier /tmp n’a été supprimé, le journal ne doit pas contenir de trace de ce dossier,
 - Comme vous n’êtes pas seul à utiliser ces machines, vous allez notifier les autres personnes des tâches que vous avez effectué, pour cela on va utiliser le système de mail internet au système Linux.
+> Fichier "TP7.sh"
 
 ## Envoyer un mail local aux utilisateurs de la machine, pour savoir qui sont ces utilisateurs il faut :
 - lister les utilisateurs,
 - sélectionnez uniquement ceux qui ont un shell de disponible,
+> Fichier "TP7.sh"
