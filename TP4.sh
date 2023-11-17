@@ -107,7 +107,7 @@ rm -rf /tmp/backup/data /tmp/backup/config
 # Extraction des donnees dans les repertoires appropries
 tar -xzf ${selected_file} -C /tmp/backup/
 cp -nvr /tmp/backup/config/* /etc/nginx/
-cp -nvr /tmp/backup/data/index.nginx-debian.html /var/www/html/
+cp -nvr /tmp/backup/data/* /var/www/html/
 cp -nvr /tmp/backup/data/default /etc/nginx/sites-available/
 rm -rf /tmp/backup/data /tmp/backup/config
 
